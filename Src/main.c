@@ -217,7 +217,7 @@ void CanRxCallback(){
 		xQueueSendFromISR(RadTxBufHandle, &newCore, pdFALSE);
 	}
 
-	if(newCore.id == radio_P2P){
+	if((newCore.id == p2pOffset) || (newCore.id == radio_P2P)){
 		// Check if it is a command
 		switch(newCore.Data[0]){
 		case NODE_RESET:
