@@ -3,7 +3,6 @@
  *
  *  Created on: Dec 27, 2016
  *      Author: Frank Gu
- *      Version 1.0
  */
 
 #ifndef CAN_ID_H_
@@ -24,11 +23,8 @@
 // Offsets END
 
 // NodeIDs BEGIN
-#define cc_nodeID	 1							// Command center nodeID
-#define mc_nodeID	 2							// Motor controller nodeID
-#define bps_nodeID	 3							// Battery protection system nodeID
-#define ads_nodeID	 4							// Array diagnostic system nodeID
-#define radio_nodeID 5							// Radio module nodeID
+#define radio_nodeID 6							// Radio module nodeID
+
 // NodeIDs END
 
 // P2P IDs BEGIN
@@ -71,37 +67,5 @@ enum nodeCommands{
 	CC_ACK,
 	CC_NACK
 };
-
-// Error Messages
-#define SysEMSD		0x10		// System emergency shutdown (Hard)
-#define UsrEMSD		0x11		// User emergency shutdown (Hard)
-#define bpsTrip		0x12		// BPS Trip condition (soft)
-#define mcFault		0x13		// Motor controller fault
-
-// Car Control Variables
-#define swPos		0x21		// DCI Switch positions
-#define brakePos	0x22		// DCI Brake position
-#define accelPos	0x23		// DCI Accelerator position
-#define regenPos	0x24		// DCI Regeneration position
-
-// Radio Received Commands
-#define remoteSD	0x30		// Radio controlled car shutdown (soft)
-#define setSpeed	0x31		// Set target cruise speed
-
-// Energy metering variables
-#define battQCount	0x200		// Battery net Coulomb count
-#define battPwr		0x201		// Battery power
-#define motorPwr	0x202		// Motor power
-#define lpBusPwr	0x203		// Low power bus power
-
-#define pptAPwr		0x20A		// PPT A Power
-#define pptBPwr		0x20B		// PPT B Power
-#define pptCPwr		0x20C		// PPT C Power
-
-// Module voltage offset
-#define voltOffset	0x350		// Note the index of first module voltage at 0x351
-
-// Module temperature array offset
-#define tempOffset  0x500		// Note the index of first temperature is at 0x501
 
 #endif /* CAN_ID_H_ */

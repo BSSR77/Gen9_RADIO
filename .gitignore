@@ -1,18 +1,32 @@
 
-Debug_MSG/Src/stm32l4xx_hal_msp.d
-
 *.o
-
-*.d
-
-*.list
 
 *.mk
 
-Debug_MSG/makefile
+*.d
 
-Debug_MSG/RTOS_Radio.elf
+Debug_MSG
 
-Debug_MSG/RTOS_Radio.bin
+Debug
 
-Debug_MSG/output.map
+Release
+
+*.bak
+
+
+*.bak
+
+Src/Backup/
+
+Inc/Backup/
+
+
+Inc/Backup/CAN_ID.h.bak
+
+Inc/Backup/main.h.bak
+
+Inc/Backup/stm32l4xx_hal_conf.h.bak
+
+Inc/Backup/stm32l4xx_it.h.bak
+
+Src/Backup/stm32l4xx_it.c.bak
