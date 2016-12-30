@@ -706,11 +706,7 @@ void doCanTx(void const * argument)
 			  osDelay(canTxInterval);
 		  }
 
-		  if (newFrame.isExt){
-			  Can_sendExt(newFrame.core.id,newFrame.isRemote,newFrame.core.Data,newFrame.core.dlc);
-		  } else{
-			  Can_sendStd(newFrame.core.id,newFrame.isRemote,newFrame.core.Data,newFrame.core.dlc);
-		  }
+		  Can_sendStd(newFrame.core.id,newFrame.isRemote,newFrame.core.Data,newFrame.core.dlc);
   	  }
   }
   /* USER CODE END doCanTx */
@@ -768,10 +764,11 @@ void TmrSendHB(void const * argument)
   /* USER CODE BEGIN TmrSendHB */
 	static Can_frame_t newFrame;
 	if((statusWord & 0x07) == ACTIVE){
-		xSemaphoreTake(sttswrdMtxHandle, portMAX_DELAY);
 		newFrame.isExt = 0;
 		newFrame.isRemote = 0;
+		xSemaphoreTake(sttswrdMtxHandle, portMAX_DELAY);
 		newFrame.core.id = radio_SW;
+		xSemaphoreGive(sttswrdMtxHandle);
 		newFrame.core.dlc = CAN_HB_DLC;
 		for(int i=0; i<4; i++){
 			newFrame.core.Data[3-i] = (statusWord >> (8*i)) & 0xff;			// Convert uint32_t -> uint8_t
@@ -781,8 +778,6 @@ void TmrSendHB(void const * argument)
 	static uint8_t hbmsg[] = "HB issued\n";
 	Serial2_writeBytes_Async(hbmsg, sizeof(hbmsg)-1,async_Interval);
 #endif
-
-		xSemaphoreGive(sttswrdMtxHandle);
 	} else if ((statusWord & 0x07) == INIT) {
 		newFrame.isExt = 0;
 		newFrame.isRemote = 0;
