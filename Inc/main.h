@@ -74,8 +74,6 @@
 #define radTxBufLength 	8		// Radio transmission buffer length (bytes)
 
 #define WD_Interval		16		// Watchdog refresh interval (ticks)
-#define HB_Interval		1000	// CAN Heart-beat interval (ticks)
-#define FW_Interval		50		// Firmware broadcast interval (ticks)
 
 #define async_Interval	15		// Timeout for any asynchronous functions (ms)
 								// Note: watchdog kicking occurs every 16 ms, so 15 ms is a safe bet
